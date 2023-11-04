@@ -17,6 +17,7 @@ function pullSavedInfo() {
     const parsedJson = JSON.parse(localStorage.getItem('feedback-form-state'));
     form.elements.email.value = parsedJson.email;
     form.elements.message.value = parsedJson.message;
+    return parsedJson;
   } catch (error) {
     console.log(`Pull error: ${error}`);
   }
@@ -26,7 +27,7 @@ form.addEventListener('submit', resetForm);
 
 function resetForm(event) {
   event.preventDefault();
-  console.log(formInfo);
+  console.log(pullSavedInfo());
   localStorage.clear();
   event.target.reset();
 }
